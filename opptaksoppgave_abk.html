@@ -4,10 +4,6 @@
     <head>
         <title id="title">Opptaksoppgave - ABK</title>
 
-        <meta charset="utf-8" name="charset" content="UTF-8">
-        <meta name="author" content="Aleksander Berge Kjellsen">
-        <meta name="description" content="Start IT Opptaksoppgave">
-
         <style>
             div.square {
                 color: blue;
@@ -21,14 +17,6 @@
             }
 
             div.firstOnLine {
-                clear: left;
-            }
-
-            div#success-notification {
-                color: green;
-                float: left;
-                /* Add some spacing from above DIVs. */
-                padding: 30px 0 0 0;
                 clear: left;
             }
         </style>
@@ -49,62 +37,21 @@
         <div id="r3c2" class="square" onclick="clickItem(this, 'r3c1', 'r3c3', 'r2c2', 'oob')">4</div>
         <div id="r3c3" class="square" onclick="clickItem(this, 'r3c2', 'oob', 'r2c3', 'oob')">6</div>
 
-        <div id="success-notification" style="display: none">Alle rutene er i riktig rekkefølge!</div>
-
         <script>
-            function arraysEqual(a, b) {
-                if (a === b) return true;
-                if (a == null || b == null) return false;
-                if (a.length !== b.length) return false;
-
-                for (var i = 0; i < a.length; ++i) {
-                    if (a[i] !== b[i]) return false;
-                }
-                    return true;
-                }
-
-            function checkIfSolved() {
-                let solution = ["1", "2", "3", "4", "5", "6", "7", "8", ""]
-
-                let grid = [
-                    "r1c1", "r1c2", "r1c3",
-                    "r2c1", "r2c2", "r2c3",
-                    "r3c1", "r3c2", "r3c3"];
-                
-                let squareNumbers = [];
-                
-                for (squareId of grid) {
-                    squareNumbers.push(document.getElementById(squareId).innerHTML);
-                }
-
-                // Display success message if arrays are equal (correct order), else hide it.
-                if (arraysEqual(squareNumbers, solution)) {
-                    document.getElementById("success-notification").style.display = "block";
-                } else {
-                    document.getElementById("success-notification").style.display = "none";
-                }
-            }
-
             function clickItem(tagElement, left, right, above, below) {
                 if (document.getElementById(left).innerHTML == '') {
-                    // Blank square to the left.
                     document.getElementById(left).innerHTML = tagElement.innerHTML;
                     tagElement.innerHTML = '';
                 } else if (document.getElementById(right).innerHTML == '') {
-                    // Blank square to the right.
                     document.getElementById(right).innerHTML = tagElement.innerHTML;
                     tagElement.innerHTML = '';
                 } else if (document.getElementById(above).innerHTML == '') {
-                    // Blank square above.
                     document.getElementById(above).innerHTML = tagElement.innerHTML;
                     tagElement.innerHTML = '';
                 } else if (document.getElementById(below).innerHTML == '') {
-                    // Blank square below.
                     document.getElementById(below).innerHTML = tagElement.innerHTML;
                     tagElement.innerHTML = '';
                 }
-
-                checkIfSolved();
             }
         </script>
     </body>
